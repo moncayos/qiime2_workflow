@@ -1,0 +1,16 @@
+Now, the directory contains demultiplexed_seqs (you can type ls to check its there)
+The demultiplexed_seqs contains all of your files
+
+How to convert all files to a QIIME artifact (.qza):
+
+qiime tools import \
+--type 'SampleData[SequencesWithQuality]' \
+--input-path demultiplexed_seqs \
+--input-format CasavaOneEightSingleLanePerSampleDirFmt \
+--output-path demux-single-end.qza
+
+To summarize files:
+
+qiime demux summarize \
+--i-data demux-single-end.qza \
+--o-visualization demux_seqs.qzv

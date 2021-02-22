@@ -1,0 +1,40 @@
+qiime diversity core-metrics-phylogenetic \
+--i-table table-dada2.qza \
+--i-phylogeny tree.qza \
+--m-metadata-file forward_metadata.tsv \
+--p-sampling-depth 15751 \
+--output-dir core-metrics-results
+
+qiime diversity alpha-group-significance \
+--i-alpha-diversity core-metrics-results/faith_pd_vector.qza \
+--m-metadata-file forward_metadata.tsv \
+--o-visualization core-metrics-results/faiths_pd_statistics.qzv
+
+qiime diversity alpha-group-significance \
+--i-alpha-diversity core-metrics-results/evenness_vector.qza \
+--m-metadata-file forward_metadata.tsv \
+--o-visualization core-metrics-results/evenness_statistics.qzv
+
+qiime longitudinal anova \
+--m-metadata-file core-metrics-results/faith_pd_vector.qza \
+--m-metadata-file forward_metadata.tsv \
+--p-formula 'faith_pd ~ collection_date * treatment_group' \
+--o-visualization core-metrics-results/faiths_pd_anova.qzv
+
+qiime longitudinal anova \
+--m-metadata-file core-metrics-results/faith_pd_vector.qza \
+--m-metadata-file forward_metadata.tsv \
+--p-formula 'faith_pd ~ treatment_group * glyphosate_conc' \
+--o-visualization core-metrics-results/faiths_pd_anova.qzv
+
+qiime longitudinal anova \
+--m-metadata-file core-metrics-results/faith_pd_vector.qza \
+--m-metadata-file forward_metadata.tsv \
+--p-formula 'faith_pd ~ number_of_reads * glyphosate_conc' \
+--o-visualization core-metrics-results/faiths_pd_anova.qzv
+
+qiime longitudinal anova \
+--m-metadata-file core-metrics-results/faith_pd_vector.qza \
+--m-metadata-file forward_metadata.tsv \
+--p-formula 'faith_pd ~ GC * glyphosate_conc' \
+--o-visualization core-metrics-results/faiths_pd_anova.qzv

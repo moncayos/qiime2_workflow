@@ -1,0 +1,8 @@
+conda activate qiime2-2020.8
+cd desktop
+cd forward_reads
+mkdir demultiplexed_seqs
+
+At this point, drag all fastq.gz files into the folder demultiplexed_seqs
+
+cd -

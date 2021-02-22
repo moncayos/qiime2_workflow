@@ -1,0 +1,20 @@
+qiime quality-filter q-score \
+--i-demux demux-single-end.qza \
+--o-filtered-sequences demux-filtered.qza \
+--o-filter-stats demux-filter-stats.qza
+
+qiime deblur denoise-16S \
+--i-demultiplexed-seqs demux-filtered.qza \
+--p-trim-length 250 \
+--o-representative-sequences rep-seqs-deblur.qza \
+--o-table table-deblur.qza \
+--p-sample-stats \
+--o-stats deblur-stats.qza
+
+qiime metadata tabulate \
+--m-input-file demux-filter-stats.qza \
+--o-visualization demux-filter-stats.qzv
+
+qiime deblur visualize-stats \
+> --i-deblur-stats deblur-stats.qza \
+> --o-visualization deblur-stats.qzv

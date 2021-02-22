@@ -1,0 +1,6 @@
+qiime diversity alpha-rarefaction \
+--i-table table-dada2.qza \
+--i-phylogeny tree.qza \
+--p-max-depth 15751 \
+--m-metadata-file forward_metadata.tsv \
+--o-visualization alpha-rarefaction.qzv \

@@ -1,0 +1,15 @@
+qiime feature-table filter-samples \
+--i-table table-dada2.qza \
+--m-metadata-file forward_metadata.tsv \
+--p-where "[treatment_group]='experimental'" \
+--o-filtered-table experimental-table.qza
+
+qiime composition add-pseudocount \
+--i-table experimental-table.qza \
+--o-composition-table comp-experimental-table.qza
+
+qiime composition ancom \
+--i-table comp-experimental-table.qza \
+--m-metadata-file forward_metadata.tsv \
+--m-metadata-column collection_date \
+--o-visualization ancom-collection_date.qzv

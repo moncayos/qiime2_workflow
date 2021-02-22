@@ -1,0 +1,43 @@
+qiime diversity beta-group-significance \
+--i-distance-matrix core-metrics-results/unweighted_unifrac_distance_matrix.qza \
+--m-metadata-file forward_metadata.tsv \
+--m-metadata-column treatment_group \
+--o-visualization core-metrics-results/unweighted-unifrac-treatment_group-significance.qzv \
+--p-pairwise
+
+qiime diversity beta-group-significance \
+--i-distance-matrix core-metrics-results/weighted_unifrac_distance_matrix.qza \
+--m-metadata-file forward_metadata.tsv \
+--m-metadata-column treatment_group \
+--o-visualization core-metrics-results/weighted-unifrac-treatment_group-significance.qzv \
+--p-pairwise
+
+qiime diversity beta-group-significance \
+--i-distance-matrix core-metrics-results/weighted_unifrac_distance_matrix.qza \
+--m-metadata-file forward_metadata.tsv \
+--m-metadata-column collection_date \
+--o-visualization core-metrics-results/weighted-unifrac-collection_date-significance.qzv
+
+qiime diversity beta-group-significance \
+--i-distance-matrix core-metrics-results/unweighted_unifrac_distance_matrix.qza \
+--m-metadata-file forward_metadata.tsv \
+--m-metadata-column collection_date \
+--o-visualization core-metrics-results/unweighted-unifrac-collection_date-significance.qzv
+
+qiime diversity adonis \
+--i-distance-matrix core-metrics-results/unweighted_unifrac_distance_matrix.qza \
+--m-metadata-file forward_metadata.tsv \
+--o-visualization core-metrics-results/unweighted_adonis.qzv \
+--p-formula treatment_group+glyphosate_conc
+
+qiime emperor plot \
+--i-pcoa core-metrics-results/unweighted_unifrac_pcoa_results.qza \
+--m-metadata-file forward_metadata.tsv \
+--p-custom-axes glyphosate_conc \
+--o-visualization core-metrics-results/unweighted-unifrac-emperor-glyphosate_conc.qzv
+
+qiime emperor plot \
+--i-pcoa core-metrics-results/bray_curtis_pcoa_results.qza \
+--m-metadata-file forward_metadata.tsv \
+--p-custom-axes glyphosate_conc \
+--o-visualization core-metrics-results/bray-curtis-emperor-glyphosate_conc.qzv
