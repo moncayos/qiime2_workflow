@@ -1,0 +1,6 @@
+qiime fragment-insertion sepp \
+--i-representative-sequences rep-seqs-dada2.qza \
+--i-reference-database sepp-refs-gg-13-8.qza \
+--o-tree tree.qza \
+--o-placements tree_placements.qza \
+--p-threads 3
